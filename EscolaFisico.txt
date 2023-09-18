@@ -1,4 +1,34 @@
 create database escola;
+
 use escola;
+
 create table Aluno (matricula int primary key auto_increment, nome varchar(80) not null, nascimento date, cpf char(14) not null unique, responsavel varchar(80) not null, email varchar(80) unique);
+
 create table Turma (num int primary key, turno char(1) not null, definicao varchar(60));
+
+create table Disciplina (cod_disciplina int primary key auto_increment, nome varchar(30) not null);
+
+create table Estuda (idEstuda int primary key auto_increment, fk_Aluno_matricula int not null, fk_Turma_Numero int not null);
+
+create table Possui (idPossui int primary key auto_increment, fk_Disciplina_cod_Disciplina int not null, fk_turma_num int not null);
+
+create table Professor (matricula int primary key auto_increment, nome varchar(80) not null, formacao varchar(30));
+
+create table Leciona (idLeciona int primary key auto_increment, fk_Disciplina_cod_Disciplina int not null, fk_Professor_matricula int not null);
+
+alter table estuda add constraint fkmat foreign key (fk_Aluno_matricula) references Aluno (matricula);
+
+alter table estuda add constraint fknum foreign key (fk_Turma_numero) references Turma (num);
+
+alter table Possui add constraint fkdis foreign key (fk_Disciplina_cod_Disciplina) references Disciplina (cod_disciplina);
+
+alter table Possui add constraint fktur foreign key (fk_Turma_num) references turma (num);
+
+alter table Leciona add constraint fkdis2 foreign key (fk_Disciplina_cod_Disciplina) references Disciplina (cod_disciplina);
+
+alter table Leciona add constraint fkpro foreign key (fk_professor_matricula) references professor (matricula);
+
+insert into aluno values (3001, 'Godofredo Henrique', '2000-03-15', '123.456.789-01', 'Godojane Maia', 'gh@email.com');
+
+insert into aluno values (null, 'carlota joaquina', '1945-02-10', '123.456.789-02', 'clenisbaldo winter', null);
+
