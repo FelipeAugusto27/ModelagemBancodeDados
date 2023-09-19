@@ -3,12 +3,19 @@ create database estacionamento;
 create table Veiculo (idVeiculo int primary key auto_increment, fabricante varchar(50) not null, modelo varchar(80) not null, placa char(7) not null unique);
 
 alter table veiculo rename to carro
-
 alter table carro add cor varchar(15) not null after modelo;
-
 alter table carro modify cor char(8) not null;
-
 alter table carro change modelo nome_modelo varchar(50);
-
 alter table carro drop cor;
 
+insert into carro values (1001, 'Wolkswagen', 'Gol', 'ABC1234');
+insert into carro values (null, 'Fiat', 'Marea Turbo', 'ABC1235');
+insert into carro values (null, 'Ford', 'Ka', 'ABC1236');
+insert into carro values (null, 'Toyota', 'Corolla', 'ABC1237');
+insert into carro values (null, 'Honda', 'Civic', 'ABC1238');
+insert into carro values (null, 'Toyota', 'Yaris', ABC1241);
+
+update carro set nome_modelo = 'Ka Sedan' where idVeiculo = 1003;
+update carro set nome_modelo = 'Polo', placa = ABC1240 where idVeiculo = 1001;
+
+delete from carro where idVeiculo = 1002;
