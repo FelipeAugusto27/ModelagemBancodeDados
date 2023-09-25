@@ -20,6 +20,7 @@ alter table Possui add constraint fktur foreign key (fk_Turma_num) references tu
 
 alter table Leciona add constraint fkdis2 foreign key (fk_Disciplina_cod_Disciplina) references Disciplina (cod_disciplina);
 alter table Leciona add constraint fkpro foreign key (fk_professor_matricula) references professor (matricula);
+alter table professor add dependentes int;
 
 insert into aluno values (3001, 'Godofredo Henrique', '2000-03-15', '123.456.789-01', 'Godojane Maia', 'gh@email.com');
 insert into aluno values (null, 'Carlota Joaquina', '1945-02-10', '123.456.789-02', 'Clenisbaldo Winter', null);
@@ -28,6 +29,8 @@ insert into aluno (matricula, nome, nascimento, cpf, responsavel, email) values 
 insert into aluno (nome, cpf, responsavel) values ('Waldiney Mouse', '123.456.789-06', 'Wesley Keyboard');
 insert into aluno (cpf, matricula, nome, responsavel, email) values ( '123.456.789-07', null, 'Genivaldo Williams', 'Clotilde Willians', 'gw@email.com');
 insert into aluno values (null, 'Judite Presley', null, '123.456.789-08', 'Jonas Presley', null);
+insert into aluno values (null, 'Renata Mouse', '1995-03-15', '123.456.789-09', 'Wesley Keyboard', 'rn@email.com');
+insert into aluno values (null, 'Mouse Sherman Williams', '2015-09-12', '123.456.789-10', 'Cpu Sherman', null);
 
 insert into turma values (2023080, 'M', 'Técnico de Informatica');
 insert into turma values (2023090, 'T', 'Técnico em Comunicação Visual');
@@ -65,9 +68,13 @@ update professor set email = 'sergio@email.com' where matricula = 2001;
 update professor set email = 'reigelado@email.com' where matricula = 2002;
 update professor set email = 'flavia@email.com' where matricula = 2003;
 update professor set email = 'jbrandao@email.com' where matricula = 2004;
+update professor set dependentes = 3 where matricula = 2001;
+update professor set dependentes = 0 where matricula = 2002;
+update professor set dependentes = 2 where matricula = 2004;
 
 update aluno set nascimento = '2003-05-06' where matricula = 3004;
 update aluno set nascimento = '2000-03-15' where matricula = 3005;
+update aluno set nome = 'Renata Mouse Silva' where matricula = 3007;
 
 update disciplina set nome = 'Programação em Python' where cod_disciplina = 1;
 
